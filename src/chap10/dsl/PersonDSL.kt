@@ -16,7 +16,6 @@ fun main() {
         it.age = 40
     }
     println("${person.name}, ${person.age}")
-    
 
     val person2 = person2 {
         name = "aloe"

@@ -1,0 +1,25 @@
+package chap06.section1.section2.bylazyobj
+
+class Person(val name: String, val age: Int)
+
+fun main() {
+    var isPersonInstantiated = false //초기화 용도 확인
+    
+    val person: Person by lazy { //lazy를 활용한 person 객체의 지연 초기화
+        isPersonInstantiated = true
+        Person("Kim", 23) //이 부분이 Lazy 객체로 반환됨
+    }
+    
+    val personDelegate = lazy { Person("Hong", 40) } //위임 변수를 사용한 초기화
+    
+    println("person Init: $isPersonInstantiated")
+    println("personDelegate Init: ${personDelegate.isInitialized()}")
+    
+    println("person.name = ${person.name}, ${person.age}") //이 시점에서 초기화
+    println("personDelegate.value.name = ${personDelegate.value.name}, ${personDelegate.value.age}") //이 시점에서 초기화
+
+    println("person Init: $isPersonInstantiated")
+    println("personDelegate Init: ${personDelegate.isInitialized()}")
+    
+}
+
